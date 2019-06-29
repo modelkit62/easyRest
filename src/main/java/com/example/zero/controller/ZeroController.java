@@ -1,0 +1,28 @@
+package com.example.zero.controller;
+
+
+import com.example.zero.model.MyCurrency;
+import com.example.zero.service.ZeroService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/zero")
+public class ZeroController {
+
+    ZeroService service;
+
+    @Autowired
+    public ZeroController(ZeroService service) {
+        this.service = service;
+    }
+
+    @GetMapping
+    public String compare(@RequestBody MyCurrency myCurrency){
+        return service.doCurrency(myCurrency);
+    }
+
+}
