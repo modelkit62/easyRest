@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ZeroService {
-    public String doCurrency(MyCurrency myCurrency) {
+    public MyCurrency doCurrency(MyCurrency myCurrency) {
 
         if (myCurrency.getValue() > 9){
-            return "Mayor a 9";
+            myCurrency.setName("La ostia");
         }
-        return "Mayor a 9";
+        return myCurrency;
 
     }
 }

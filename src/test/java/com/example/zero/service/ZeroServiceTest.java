@@ -14,7 +14,9 @@ public class ZeroServiceTest {
 
         MyCurrency myCurrency = new MyCurrency("Pound", "UK", 9.7);
 
-        assertEquals("Mayor a 9", zeroService.doCurrency(myCurrency));
+        MyCurrency currency = zeroService.doCurrency(myCurrency);
+
+        assertEquals("La ostia", currency.getName());
 
     }
 }

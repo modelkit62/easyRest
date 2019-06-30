@@ -19,6 +19,17 @@ public class MyCurrency {
         this.value = value;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
+    }
 
     public String getName() {
         return name;
