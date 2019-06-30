@@ -23,12 +23,6 @@ public class ZeroController {
     @GetMapping
     public MyCurrency compare(@RequestBody MyCurrency myCurrency){
 
-        if(myCurrency.getCountry() == null){
-            myCurrency.setName("Los Cojones!");
-            myCurrency.setCountry("Los Cojones!");
-            myCurrency.setValue(25.3);
-        }
-
         return service.doCurrency(myCurrency);
     }
 
