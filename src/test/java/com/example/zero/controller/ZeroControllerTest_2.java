@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.io.IOException;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @RunWith(SpringRunner.class)
@@ -39,7 +40,7 @@ public class ZeroControllerTest_2 {
                         .content(getIncommingRequest())
                         // .content("{\"name\":\"Pound\",\"country\":\"UK\",\"value\":\"22.2\"}")
                         .accept(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"))
                 .andExpect(jsonPath("$.name").value("La ostia"))
                 .andDo(MockMvcResultHandlers.print());
@@ -52,13 +53,23 @@ public class ZeroControllerTest_2 {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(getIncommingRequest())
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
+                .andExpect(status().is2xxSuccessful())
                 .andReturn();
 
         String contentAsString = mvcResult.getResponse().getContentAsString();
 
         JSONAssert.assertEquals(contentAsString, "{\"name\":\"La ostia\",\"country\":\"UK\",\"value\":25.5}", JSONCompareMode.LENIENT);
 
+    }
+
+    @Test
+    public void failFlow() throws Exception {
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/zero")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
     }
 
 
